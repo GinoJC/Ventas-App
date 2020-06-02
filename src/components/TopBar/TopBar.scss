@@ -1,5 +1,32 @@
 @import "../../scss/index.scss";
 
 .top-bar {
-    
+    background-color: #3da4ab;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+
+    &_left {
+        margin-top: 20px;
+        i{
+            font-size: 30px !important;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    &_right {
+         margin-top: 20px;
+        >i{
+            font-size: 30px !important;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
 }

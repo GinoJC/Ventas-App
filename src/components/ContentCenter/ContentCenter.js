@@ -4,7 +4,7 @@ import "./ContentCenter.scss";
 
 export default function ContentCenter() {
     return (
-        <div>
+        <div className="content-center">
             <h2>ContentCenter...</h2>
         </div>
     )

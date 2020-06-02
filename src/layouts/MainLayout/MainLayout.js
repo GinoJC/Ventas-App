@@ -9,22 +9,18 @@ import "./MainLayout.scss";
 
 export default function MainLayout() {
     return (
-        <Router>
-            <Grid className="main-layout">
-                <Grid.Row>
-                    <Grid.Column width={16}>
-                        <TopBar/>
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column width={3}>
-                        <MenuLeft/>
-                    </Grid.Column>
-                    <Grid.Column className="content" width={13}>
-                        <ContentCenter/>
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-        </Router>
+        <div className="main-layout">
+            <div className="top-bar">
+                <TopBar/>
+            </div>
+            <div className="content">
+                <aside>
+                    <MenuLeft/>
+                </aside>
+                <selection className="contentCenter">
+                    <ContentCenter/>
+                </selection>
+            </div>
+        </div>
     )
 }

@@ -1,32 +1,30 @@
 @import "../../scss/index.scss";
 
-.ui.grid.main-layout {
+.main-layout {
     background-color: $background-primary;
     min-height: 100vh;
     margin: 0;
+    
 
-    > .row {
-        padding: 0;
-
-        &:first-of-type {
-            height: 10vh;
-        }
-
-        &:last-of-type {
-            height: 90vh;
-        }
-
-        > .column {
-            padding: 0;
-        }
+    .top-bar {
+        height: 100px;
     }
 
     .content {
-        overflow-y: scroll;
-        height: calc(100vh - 105px);
+        display: flex;
+        justify-content: center;
 
-        &::-webkit-scrollbar {
-            display: none;
+        .menu-left {
+            width: 200px;
+            height: 100%;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        .contentCenter {
+            width: 600px;
+            height: 100%;
+            margin-top: 10px;
         }
     }
 }
