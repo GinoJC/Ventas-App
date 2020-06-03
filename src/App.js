@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import {ToastContainer} from 'react-toastify';
-import firebase from "./utils/firebase";
-import "firebase/auth";
 import LoggedLayout from "./layouts/MainLayout";
 
 function App() {
