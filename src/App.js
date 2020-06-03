@@ -1,16 +1,31 @@
 import React, {useState} from 'react';
 import {ToastContainer} from 'react-toastify';
-import firebase from "./utils/firebase";
+import firebase from "./utils/Firebase";
 import "firebase/auth";
-import LoggedLayout from "./layouts/MainLayout";
+import MainLayout from "./layouts/MainLayout";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [reloadApp, setReloadApp] = useState(false);
+	const [user, setUser] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
+	const [reloadApp, setReloadApp] = useState(false);
 
-  return (
-    <>
-			<LoggedLayout user={user} setReloadApp={setReloadApp}/>
+	firebase.auth().onAuthStateChanged(currentUser => {
+
+		if(!currentUser){
+			setUser(null);
+		}else{
+			setUser(currentUser);
+		}
+		setIsLoading(false);
+	});
+
+	if(isLoading){
+		return null;
+	}
+
+  	return (
+    	<>
+			<MainLayout user={user} setReloadApp={setReloadApp}/>
 			<ToastContainer
 				position="top-center"
 				autoClose={5000}
@@ -23,7 +38,7 @@ function App() {
 				pauseOnHover={false}
 			/>
 		</>
-  );
+  	);
 }
 
 export default App;

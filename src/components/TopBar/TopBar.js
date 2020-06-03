@@ -1,10 +1,13 @@
 import React from 'react';
 import {Button, Icon, Image, Input} from "semantic-ui-react";
 import {Link, withRouter} from "react-router-dom";
+import UserImage from "../../assets/png/user.png";
 
 import "./TopBar.scss";
 
-export default function TopBar() {
+function TopBar(props) {
+    const {user} = props;
+
     return (
         <div className="top-bar">
             <div className="top-bar_left">
@@ -15,8 +18,13 @@ export default function TopBar() {
             </div>
             <div className="top-bar_right">
                 <Icon name="shopping cart"/>
-                <Icon name="user"/>
+                
+                    <Image src={UserImage} href="/auth"/>
+                    Iniciar Sesion
+
             </div>
         </div>
     )
 }
+
+export default withRouter(TopBar);

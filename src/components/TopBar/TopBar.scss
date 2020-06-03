@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 50px;
+    z-index: 1;
 
     &_left {
         margin-top: 20px;
@@ -21,10 +22,29 @@
     }
 
     &_right {
-         margin-top: 20px;
-        >i{
-            font-size: 30px !important;
+        display: flex;
+        align-items: center;
+
+        a {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            color: $font-light;
+
             &:hover {
+                color: $primary-color;
+            }
+
+            img {
+                width: 25px;
+                height: 25px;
+                margin-right: 10px;
+                border-radius: 50px;
+            }
+        }
+
+        i {
+            &:hover{
                 cursor: pointer;
             }
         }
