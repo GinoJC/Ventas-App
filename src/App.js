@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {ToastContainer} from 'react-toastify';
-import LoggedLayout from "./layouts/MainLayout";
+import LoggedLayout from "./components/MainLayout";
 
 function App() {
   const [user, setUser] = useState(null);
