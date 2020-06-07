@@ -12,14 +12,14 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
   "user": {},
-  "favorites": {},
+  "favorites": [],
   "cards": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-  "shoppingCart": {},
+  "shoppingCart": [],
   "articles": [
     {
       "id": 2,
-      "brand": "brandNew",
-      "name": "newArticle",
+      "brand": "brandNew 2",
+      "name": "newArticle 2",
       "price": "1000",
       "vendor": "newVendor",
       "condition": "used",
@@ -28,8 +28,8 @@ const initialState = {
     },
     {
       "id": 3,
-      "brand": "brandNew",
-      "name": "newArticle",
+      "brand": "brandNew 3",
+      "name": "newArticle 3",
       "price": "1000",
       "vendor": "newVendor",
       "condition": "used",
@@ -38,8 +38,8 @@ const initialState = {
     },
     {
       "id": 4,
-      "brand": "brandNew",
-      "name": "newArticle",
+      "brand": "brandNew 4",
+      "name": "newArticle 4",
       "price": "1000",
       "vendor": "newVendor",
       "condition": "used",
@@ -48,8 +48,8 @@ const initialState = {
     },
     {
       "id": 5,
-      "brand": "brandNew",
-      "name": "newArticle",
+      "brand": "brandNew 5",
+      "name": "newArticle 5",
       "price": "1000",
       "vendor": "newVendor",
       "condition": "used",

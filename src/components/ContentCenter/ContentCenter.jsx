@@ -15,9 +15,11 @@ const ContentCenter = ({ articles }) => {
       <Banner />
       <Container className={classes.cardGrid} maxWidth="lg">
         <Grid container spacing={6}>
-          {articles.map((article) => (
-            <Article {...article} />
-          ))}
+            {articles.map((article) => (
+              <Grid item xs={12} sm={6} md={3}>
+                <Article {...article} />
+              </Grid>
+            ))}
         </Grid>
       </Container>
     </main>
