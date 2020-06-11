@@ -1,27 +1,18 @@
-import React, {useState} from 'react';
-import {ToastContainer} from 'react-toastify';
-import LoggedLayout from "./components/MainLayout";
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import MainLayout from "./components/MainLayout";
+import ContentCenter from './components/ContentCenter';
+import NotFound from "./components/NotFound";
 
-function App() {
-  const [user, setUser] = useState(null);
-  const [reloadApp, setReloadApp] = useState(false);
-
-  return (
-    <>
-			<LoggedLayout user={user} setReloadApp={setReloadApp}/>
-			<ToastContainer
-				position="top-center"
-				autoClose={5000}
-				hideProgressBar
-				newestOnTop
-				closeOnClick
-				rtl={false}
-				pauseOnVisibilityChange
-				draggable
-				pauseOnHover={false}
-			/>
-		</>
-  );
-}
+const App = () => (
+	<BrowserRouter>
+		<MainLayout>
+			<Switch>
+				<Route exact path="/" component={ContentCenter} />
+				<Route component={NotFound} />
+			</Switch>
+		</MainLayout>
+	</BrowserRouter>
+);
 
 export default App;
