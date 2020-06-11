@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import { useStyles } from './StyleContentCenter';
 import Banner from '../Banner';
-import Article from '../Article';
+import CardArticle from '../CardArticle';
 
 const ContentCenter = ({ articles }) => {
 
@@ -17,7 +17,7 @@ const ContentCenter = ({ articles }) => {
         <Grid container spacing={6}>
             {articles.map((article) => (
               <Grid item xs={12} sm={6} md={3}>
-                <Article {...article} />
+                <CardArticle {...article} />
               </Grid>
             ))}
         </Grid>
