@@ -5,11 +5,10 @@ import "firebase/auth";
 import MainLayout from "./layouts/MainLayout";
 
 function App() {
-	const [user, setUser] = useState(null);
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
 	const [reloadApp, setReloadApp] = useState(false);
 
-	firebase.auth().onAuthStateChanged(currentUser => {
+	/* firebase.auth().onAuthStateChanged(currentUser => {
 
 		if(!currentUser){
 			setUser(null);
@@ -17,15 +16,15 @@ function App() {
 			setUser(currentUser);
 		}
 		setIsLoading(false);
-	});
-
+	}); 
 	if(isLoading){
 		return null;
-	}
+	}*/
+
 
   	return (
     	<>
-			<MainLayout user={user} setReloadApp={setReloadApp}/>
+			<MainLayout setReloadApp={setReloadApp}/>
 			<ToastContainer
 				position="top-center"
 				autoClose={5000}

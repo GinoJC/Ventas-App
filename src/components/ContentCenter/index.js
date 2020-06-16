@@ -1,1 +1,1 @@
-export {default} from "./ContentCenter";
+export {default} from "./ContentCenter.jsx";

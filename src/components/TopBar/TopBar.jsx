@@ -8,6 +8,9 @@ import "./TopBar.scss";
 function TopBar(props) {
     const {user} = props;
 
+    console.log(user);
+    
+
     return (
         <div className="top-bar">
             <div className="top-bar_left">
@@ -18,10 +21,17 @@ function TopBar(props) {
             </div>
             <div className="top-bar_right">
                 <Icon name="shopping cart"/>
-                
-                    <Image src={UserImage} href="/auth"/>
-                    Iniciar Sesion
-
+                {user ? (
+                    <Link to="/settings">
+                        <Image src={user.photoURL ? user.photoURL : UserImage}/>
+                        {user.displayName}
+                    </Link>
+                ) : (
+                    <Link to="/auth">
+                        <Image src={UserImage}/>
+                        <span>Iniciar Sesión</span>
+                    </Link>
+                )}
             </div>
         </div>
     )

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-//import {Button} from "@material-ui/core";
 import {Button, Icon, Form, Input} from "semantic-ui-react";
 import {toast} from "react-toastify";
 import {validateEmail} from "../../../utils/Validations";
