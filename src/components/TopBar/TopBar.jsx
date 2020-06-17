@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useState} from 'react';
 import {AppBar, Toolbar, IconButton, Typography,
         InputBase, MenuItem, Menu, Button} from '@material-ui/core';
@@ -85,4 +86,27 @@ function TopBar() {
   );
 }
 
+=======
+import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+
+const TopBar = () =>{
+    return (
+        <>
+            <CssBaseline />
+            <AppBar position="relative">
+                <Toolbar>
+                <Typography variant="h6" color="inherit" noWrap>
+                    Ventas - App
+                </Typography>
+                </Toolbar>
+            </AppBar>
+        </>
+    )    
+
+}
+>>>>>>> dd2ea8461fec355180d9976fc0709e8a30617e8b
 export default TopBar;

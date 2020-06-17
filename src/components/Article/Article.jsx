@@ -6,6 +6,10 @@ import Banner from '../Banner';
 
 const Article = (props) => {
   const { id } = props.match.params;
+<<<<<<< HEAD
+=======
+  //onsole.log(id);
+>>>>>>> dd2ea8461fec355180d9976fc0709e8a30617e8b
   console.log('props: ',props);
   console.log('props.match: ',props.match);
   console.log('props.match.params: ', props.match.params);
