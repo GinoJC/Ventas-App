@@ -1,43 +1,28 @@
 import React, {useState} from 'react';
-import {ToastContainer} from 'react-toastify';
-import firebase from "./utils/Firebase";
-import "firebase/auth";
-import MainLayout from "./layouts/MainLayout";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import MainLayout from "./components/MainLayout";
+import ContentCenter from './components/ContentCenter';
+import LoginForm from "./components/Auth/LoginForm";
+import RegisterForm from "./components/Auth/RegisterForm";
+import NotFound from "./components/NotFound";
+import Article from "./components/Article";
 
 function App() {
-	const [isLoading, setIsLoading] = useState(false);
-	const [reloadApp, setReloadApp] = useState(false);
+	const [user, setUser] = useState(null);
 
-	/* firebase.auth().onAuthStateChanged(currentUser => {
-
-		if(!currentUser){
-			setUser(null);
-		}else{
-			setUser(currentUser);
-		}
-		setIsLoading(false);
-	}); 
-	if(isLoading){
-		return null;
-	}*/
-
-
-  	return (
-    	<>
-			<MainLayout setReloadApp={setReloadApp}/>
-			<ToastContainer
-				position="top-center"
-				autoClose={5000}
-				hideProgressBar
-				newestOnTop
-				closeOnClick
-				rtl={false}
-				pauseOnVisibilityChange
-				draggable
-				pauseOnHover={false}
-			/>
-		</>
-  	);
-}
+	return(
+		<BrowserRouter>
+			<MainLayout>
+				<Switch>
+					<Route exact path="/" component={ContentCenter} />
+					<Route exact path="/login" component={LoginForm} />
+					<Route exact path="/register" component={RegisterForm} />
+					<Route exact path="/art/:id" component={Article} />
+					<Route component={NotFound} />
+				</Switch>
+			</MainLayout>
+		</BrowserRouter>
+	)
+};
 
 export default App;

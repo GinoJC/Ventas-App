@@ -1,24 +1,22 @@
 import React, {useState} from 'react';
-import {Button, Icon, Form, Input} from "semantic-ui-react";
+import { useHistory } from "react-router-dom";
 import {toast} from "react-toastify";
+import {Avatar, Button, CssBaseline, TextField,
+        Link, Grid, Typography, Container} from '@material-ui/core';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {validateEmail} from "../../../utils/Validations";
 import firebase from "../../../utils/Firebase";
 import "firebase/auth";
 
-import "./LoginForm.scss";
+import { useStyles } from './StyleLoginForm';
 
-export default function LoginForm(props) {
-    const {setSelectedForm} = props;
+export default function LoginForm() {
+    let history = useHistory();
     const [formData, setFormData] = useState(defaultValueForm());
-    const [showPassword, setShowPassword] = useState(false);
     const [formError, setFormError] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
     const [userActive, setUserActive] = useState(true);
     const [user, setUser] = useState(null);
-
-    const handlerShowPassword = () => {
-        setShowPassword(!showPassword)
-    }
+    const classes = useStyles();
 
     const onChange = e => {
         setFormData({
@@ -45,7 +43,8 @@ export default function LoginForm(props) {
         setFormError(errors);
 
         if(formOk){
-            setIsLoading(true);
+            console.log("iniciando sesion");
+            
             firebase
                 .auth()
                 .signInWithEmailAndPassword(formData.email, formData.password)
@@ -53,81 +52,94 @@ export default function LoginForm(props) {
                     setUser(response.user);
                     setUserActive(response.user.emailVerified);
                     if(!response.user.emailVerified){
+                        console.log("Para poder loguearse antes tiene que verificar la cuenta.");
                         toast.warning("Para poder loguearse antes tiene que verificar la cuenta.");
                     }    
                 }).catch(err => { 
                     handlerErrors(err.code);
                 }).finally(() => {
-                    setIsLoading(false);
+                    console.log("llega aca");
+                    
+                    history.push("/");
                 });
         }
     }
 
     return (
-        <div className="login-form">
-            <h1>Comprá y Vendé lo que quieras!.</h1>
-
-            <Form onSubmit={onSubmit} onChange={onChange}>
-                <Form.Field>
-                    <Input 
-                        type="text"
-                        name="email"
-                        placeholder="Correo Electrónico"
-                        icon="mail outline"
-                        error={formError.email}
-                    />
-                    {formError.email && (
-                        <span className="error-text">
-                            Por favor, introduce un correo electrónico válido.
-                        </span>
-                    )}
-                </Form.Field>
-                <Form.Field>
-                    <Input 
-                        type={showPassword ? "text" : "password"}
-                        name="password"
-                        placeholder="Contraseña"
-                        icon={
-                            showPassword ? (
-                                <Icon name="eye slash outline" link onClick={handlerShowPassword} />
-                            ) : (
-                                <Icon name="eye" link onClick={handlerShowPassword} />
-                            )
-                        }
-                        error={formError.password}
-                    />
-                    {formError.password && (
-                        <span className="error-text">
-                            Por favor, elige una contraseña superior a 5 caracteres.
-                        </span>
-                    )}
-                </Form.Field>
-                <Button type="submit" loading={isLoading}>
-                    Iniciar Sesión
-                </Button>
-            </Form>
-            
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Iniciar Sesión
+            </Typography>
+            <form className={classes.form} onSubmit={onSubmit}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Correo Electrónico"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                error={formError.email}
+              />
+              {formError.email && (
+                    <span className="error-text">
+                        Por favor, introduce un correo electrónico válido.
+                    </span>
+              )}
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                error={formError.password}
+              />
+              {formError.password && (
+                    <span className="error-text">
+                        Por favor, elige una contraseña superior a 5 caracteres.
+                    </span>
+              )}
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Iniciar Sesión
+              </Button>
+            </form>
             {!userActive && (
                 <ButtonResetSendEmailVerification
                     user={user}
-                    setIsLoading={setIsLoading}
                     setUserActive={setUserActive}
                 />
             )}
-
-            <div className="login-form_options">
-                <p onClick={() => setSelectedForm(null)}>Volver</p>
-                <p>
-                    ¿No tienes cuenta?{" "}
-                    <span onClick={() => setSelectedForm("register")}>Regístrate</span>
-                </p>
-            </div>
-        </div>
-    )
+            <Grid container>
+                <Grid item>
+                    <Link href="/register" variant="body2">
+                    {"Todavia no tienes cuenta? Regístrate!"}
+                    </Link>
+                </Grid>
+            </Grid>
+          </div>
+        </Container>
+      );
 }
 
 function ButtonResetSendEmailVerification(props){
-    const { user, setIsLoading, setUserActive } = props;
+    const { user, setUserActive } = props;
 
     const resendVerificationEmail = () => {
         user
@@ -136,10 +148,7 @@ function ButtonResetSendEmailVerification(props){
             toast.success("Se ha enviado el email de verificación.")
         }).catch(err => {
             console.log(err);
-            
-            //handlerErrors(err.code);
         }).finally(() => {
-            setIsLoading(false);
             setUserActive(true);
         });
     };

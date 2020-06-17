@@ -1,40 +1,88 @@
-import React from 'react';
-import {Button, Icon, Image, Input} from "semantic-ui-react";
+import React, {useState} from 'react';
+import {AppBar, Toolbar, IconButton, Typography,
+        InputBase, MenuItem, Menu, Button} from '@material-ui/core';
+import {Search as SearchIcon, AccountCircle} from '@material-ui/icons';
 import {Link, withRouter} from "react-router-dom";
-import UserImage from "../../assets/png/user.png";
 
-import "./TopBar.scss";
+import { useStyles } from './StyleTopBar';
 
-function TopBar(props) {
-    const {user} = props;
+function TopBar() {
+  const classes = useStyles();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [user, setUser] = useState(null);
 
-    console.log(user);
-    
+  const isMenuOpen = Boolean(anchorEl);
 
-    return (
-        <div className="top-bar">
-            <div className="top-bar_left">
-                <Icon name="align justify"/>
+  const handleProfileMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  const menuId = 'primary-search-account-menu';
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Perfil</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Cerrar Sesión</MenuItem>
+    </Menu>
+  );
+
+  return (
+    <div className={classes.grow}>
+      <AppBar position="static">
+        <Toolbar>
+          <Link to="/">
+            <Typography className={classes.title} variant="h6" noWrap>
+              Ventas-App
+            </Typography>
+          </Link>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
             </div>
-            <div className="top-bar_search">
-                <Input icon='search' placeholder="Buscar..."/>
-            </div>
-            <div className="top-bar_right">
-                <Icon name="shopping cart"/>
-                {user ? (
-                    <Link to="/settings">
-                        <Image src={user.photoURL ? user.photoURL : UserImage}/>
-                        {user.displayName}
-                    </Link>
-                ) : (
-                    <Link to="/auth">
-                        <Image src={UserImage}/>
-                        <span>Iniciar Sesión</span>
-                    </Link>
-                )}
-            </div>
-        </div>
-    )
+            <InputBase
+              placeholder="Buscar..."
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
+          <div className={classes.grow} />
+          <div className={classes.sectionDesktop}>
+            {user ? (
+                <IconButton
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    onClick={handleProfileMenuOpen}
+                    color="inherit"
+                >
+                    <AccountCircle />
+                </IconButton>
+            ) : (
+                <Link to="/login">
+                    <Button variant="contained" color="secondary">Iniciar Sesión</Button>
+                </Link>
+            )}
+          </div>
+        </Toolbar>
+      </AppBar>
+      {renderMenu}
+    </div>
+  );
 }
 
-export default withRouter(TopBar);
+export default TopBar;
