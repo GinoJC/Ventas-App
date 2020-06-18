@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import MainLayout from "./components/MainLayout";
+import MainLayout from "./containers/MainLayout";
 import ContentCenter from './components/ContentCenter';
 import LoginForm from "./components/Auth/LoginForm";
 import RegisterForm from "./components/Auth/RegisterForm";
-import NotFound from "./components/NotFound";
-import Article from "./components/Article";
+import NotFound from "./containers/NotFound";
+import Article from "./containers/Article";
 
 function App() {
 

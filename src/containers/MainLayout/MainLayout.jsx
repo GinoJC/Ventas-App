@@ -1,6 +1,6 @@
 import React from 'react';
-import TopBar from '../TopBar';
-import Footer from '../Footer';
+import TopBar from '../../components/TopBar';
+import Footer from '../../components/Footer';
 
 const MainLayout = ({ children }) => (
   <div className="App">

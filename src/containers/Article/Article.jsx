@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { useStyles } from './StyleArticle';
 import Button from '@material-ui/core/Button';
-import Banner from '../Banner';
+import Banner from '../../components/Banner';
 
 const Article = (props) => {
   const { id } = props.match.params;
