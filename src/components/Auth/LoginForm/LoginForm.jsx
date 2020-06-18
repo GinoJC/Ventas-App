@@ -5,7 +5,7 @@ import {Avatar, Button, CssBaseline, TextField,
         Link, Grid, Typography, Container} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {validateEmail} from "../../../utils/Validations";
-import firebase from "../../../utils/Firebase";
+import firebase from "../../../utils/firebase";
 import "firebase/auth";
 
 import { useStyles } from './StyleLoginForm';

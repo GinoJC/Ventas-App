@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import MainLayout from "./components/MainLayout";
 import ContentCenter from './components/ContentCenter';
@@ -8,7 +8,6 @@ import NotFound from "./components/NotFound";
 import Article from "./components/Article";
 
 function App() {
-	const [user, setUser] = useState(null);
 
 	return(
 		<BrowserRouter>

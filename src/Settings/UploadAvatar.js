@@ -3,7 +3,7 @@ import {Image} from "semantic-ui-react";
 import {useDropzone} from "react-dropzone";
 import {toast} from "react-toastify";
 import NoAvatar from "../../assets/png/user.png";
-import firebase from "../../utils/Firebase";
+import firebase from "../utils/Firebase";
 import "firebase/storage";
 import "firebase/auth";
 
